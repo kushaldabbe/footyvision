@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "footyvision"
+version = "0.1.0"
+description = "A Python project for football data processing"
+authors = ["Your Name <youremail@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+[tool.poetry.dev-dependencies]
+ruff = "^0.0.0"
+black = "^22.3.0"
+pytest = "^7.0.0"
+
+[tool.poetry.extras]
+opencv = "*"
+torch = "*"
