@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "footyvision"
+version = "0.1.0"
+description = "Computer vision analytics pipeline for football/soccer match analysis"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [
+    {name = "FootyVision Team"}
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
