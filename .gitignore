@@ -58,3 +58,5 @@ wandb/
 *.bak
 *.tmp
 documentation
+
+.env
