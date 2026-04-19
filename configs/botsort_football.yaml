@@ -1,0 +1,34 @@
+# FootyVision custom BoT-SORT config — tuned for broadcast football
+#
+# Changes from default (with rationale):
+#   track_buffer: 30 → 150 (6 seconds at 25fps)
+#       Football has long camera pans. Players go off-screen for 2-5 seconds
+#       and come back. Longer buffer keeps their track alive.
+#
+#   match_thresh: 0.8 → 0.85 (slightly more lenient matching)
+#       With GMC compensating for camera motion, we can afford a bit more
+#       leniency in the cost threshold. This reduces spurious track breaks.
+#
+#   new_track_thresh: 0.25 → 0.5 (harder to create new tracks)
+#       Prevents false positive detections (ball boys, crowd) from
+#       spawning tracks. Only confident detections start a track.
+#
+#   track_high_thresh: 0.25 → 0.4 (higher first-stage threshold)
+#       Reduces noisy low-confidence matches in the first stage.
+
+tracker_type: botsort
+track_high_thresh: 0.4
+track_low_thresh: 0.1
+new_track_thresh: 0.5
+track_buffer: 150
+match_thresh: 0.85
+fuse_score: True
+
+# Camera motion compensation — essential for broadcast football
+gmc_method: sparseOptFlow
+
+# ReID disabled (no extra model needed for now)
+proximity_thresh: 0.5
+appearance_thresh: 0.8
+with_reid: False
+model: auto
