@@ -24,6 +24,15 @@ def download_player_detection(rf: Roboflow, data_dir: Path) -> None:
     print(f"Dataset downloaded to: {dataset.location}")
 
 
+def download_pitch_keypoints(rf: Roboflow, data_dir: Path) -> None:
+    """Download the football-field-detection dataset with 32 pitch keypoints (YOLOv8-pose format)."""
+    print("\n=== Downloading Football Pitch Keypoint Dataset ===")
+    project = rf.workspace("roboflow-jvuqo").project("football-field-detection-f07vi")
+    version = project.version(15)  # v15 has 317 images (most complete)
+    dataset = version.download("yolov8", location=str(data_dir / "football-pitch-keypoints"))
+    print(f"Dataset downloaded to: {dataset.location}")
+
+
 def main():
     parser = argparse.ArgumentParser(description="Download FootyVision datasets from Roboflow")
     parser.add_argument("--api-key", required=True, help="Your Roboflow API key")
@@ -40,10 +49,10 @@ def main():
     rf = Roboflow(api_key=args.api_key)
 
     # Phase 0/1: Player detection dataset
-    download_player_detection(rf, data_dir)
+    # download_player_detection(rf, data_dir)
 
-    # Phase 4: Pitch keypoints (uncomment when ready)
-    # download_pitch_keypoints(rf, data_dir)
+    # Phase 4: Pitch keypoints
+    download_pitch_keypoints(rf, data_dir)
 
     print("\n=== All downloads complete ===")
 
